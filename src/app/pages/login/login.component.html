@@ -1,0 +1,73 @@
+<div class="parent">
+  <div class="contenedor-form">
+    <!-- Formulario de Iniciar Sesión -->
+    <div class="formulario" *ngIf="showLoginForm">
+      <h2 id="IS">Iniciar Sesión</h2>
+      <form class="signin" [formGroup]="loginForm" id="signin">
+        <input
+          type="email"
+          formControlName="email"
+          id="email"
+          placeholder="email"
+          required
+        />
+        <input
+          type="password"
+          formControlName="password"
+          id="pass"
+          placeholder="Contraseña"
+          required
+        />
+        <input type="submit" (click)="onLoginSubmit()" value="Iniciar Sesión" />
+        <input
+          type="button"
+          (click)="toggleForms()"
+          value="Registrar"
+          class="signup"
+        />
+      </form>
+    </div>
+
+    <!-- Formulario de Registro -->
+    <div class="formulario" *ngIf="!showLoginForm">
+      <h2>Crea tu Cuenta</h2>
+      <form [formGroup]="signupForm" id="signup">
+        <input
+          type="text"
+          formControlName="user"
+          id="username"
+          placeholder="Username"
+          required
+        />
+        <input
+          type="email"
+          formControlName="email"
+          id="email"
+          placeholder="email"
+          required
+        />
+        <input
+          type="password"
+          formControlName="password"
+          id="password"
+          placeholder="Contraseña"
+          required
+        />
+        <input
+          type="password"
+          formControlName="passwordConfirm"
+          id="passwordConfirm"
+          placeholder="Confirmar Contraseña"
+          required
+        />
+        <input type="submit" (click)="onSignupSubmit()" value="Registrarse" />
+        <input
+          type="button"
+          (click)="toggleForms()"
+          value="Regresar"
+          class="Back"
+        />
+      </form>
+    </div>
+  </div>
+</div>

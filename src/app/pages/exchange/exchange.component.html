@@ -1,0 +1,51 @@
+<div class="converter-container">
+    <h2 class="converter-header">Intercambio de Criptomonedas</h2>
+  
+    <div class="converter-body">
+      <div class="converter-input">
+        <label>Desde:</label>
+        <select [(ngModel)]="selectedFrom" (change)="updateExchangeRate()">
+          <option value="BTC">BTC</option>
+          <option value="ETH">ETH</option>
+          <!-- <option value="USDT">USDT</option> -->
+          <option value="BNB">BNB</option>
+          <!-- <option value="SOL">SOL</option> -->
+          <!-- Agrega más criptomonedas según necesites -->
+        </select>
+      </div>
+  
+      <div class="converter-input">
+        <label>Para:</label>
+        <select [(ngModel)]="selectedTo" (change)="updateExchangeRate()">
+          <option value="BTC">BTC</option>
+          <option value="ETH">ETH</option>
+          <!-- <option value="USDT">USDT</option> -->
+          <option value="BNB">BNB</option>
+          <!-- <option value="SOL">SOL</option> -->
+          <!-- Agrega más criptomonedas según necesites -->
+        </select>
+      </div>
+  
+      <div class="converter-rate">
+        <p>Saldo Disponible - {{ selectedFrom }}: {{ balances[selectedFrom] || 0 }}</p>
+        <p>Saldo Disponible - {{ selectedTo }}: {{ balances[selectedTo] || 0 }}</p>
+      </div>
+
+      <!-- Mostrar la tasa de cambio si es visible -->
+      <div *ngIf="isExchangeRateVisible" class="exchange-rate-info">
+        <p>Tasa de cambio actual: 1 {{ selectedFrom }} = {{ exchangeRate }} {{ selectedTo }}</p>
+      </div>
+
+      <div class="converter-input">
+        <label>Cantidad a intercambiar:</label>
+        <input type="number" [(ngModel)]="amountToExchange" (input)="calculateAmountToReceive()" />
+      </div>
+  
+      <div class="converter-input">
+        <label>Cantidad a recibir:</label>
+        <input type="text" [value]="amountToReceive" disabled />
+      </div>
+  
+      <button class="converter-button" (click)="executeTrade()">Ejecutar Intercambio</button>
+    </div>
+</div>
